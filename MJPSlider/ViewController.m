@@ -17,13 +17,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    MJPSlider *slider = [[MJPSlider alloc] initWithFrame:CGRectMake(0.0, 0.0, 300.0, 40.0)];
+    
+    slider.delegate = self;
+    
+    slider.center = self.view.center;
+    
+    [self.view addSubview:slider];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+- (void)sliderChangedToValue:(CGFloat)value
+{
+    NSLog(@"VALUE: %.2f", value);
 }
 
 @end

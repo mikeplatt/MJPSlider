@@ -21,6 +21,8 @@
 		4A905F7319640EF600A03FBF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A905F5519640EF600A03FBF /* UIKit.framework */; };
 		4A905F7B19640EF600A03FBF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4A905F7919640EF600A03FBF /* InfoPlist.strings */; };
 		4A905F7D19640EF600A03FBF /* MJPSliderTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A905F7C19640EF600A03FBF /* MJPSliderTests.m */; };
+		4A905F8A196410DB00A03FBF /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A905F89196410DB00A03FBF /* UIColor+Hex.m */; };
+		4A905F8D196410ED00A03FBF /* MJPSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A905F8C196410ED00A03FBF /* MJPSlider.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		4A905F7819640EF600A03FBF /* MJPSliderTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MJPSliderTests-Info.plist"; sourceTree = "<group>"; };
 		4A905F7A19640EF600A03FBF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		4A905F7C19640EF600A03FBF /* MJPSliderTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MJPSliderTests.m; sourceTree = "<group>"; };
+		4A905F88196410DB00A03FBF /* UIColor+Hex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Hex.h"; sourceTree = "<group>"; };
+		4A905F89196410DB00A03FBF /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
+		4A905F8B196410ED00A03FBF /* MJPSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPSlider.h; sourceTree = "<group>"; };
+		4A905F8C196410ED00A03FBF /* MJPSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPSlider.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +120,11 @@
 			children = (
 				4A905F6019640EF600A03FBF /* AppDelegate.h */,
 				4A905F6119640EF600A03FBF /* AppDelegate.m */,
-				4A905F6319640EF600A03FBF /* Main.storyboard */,
 				4A905F6619640EF600A03FBF /* ViewController.h */,
 				4A905F6719640EF600A03FBF /* ViewController.m */,
+				4A905F86196410B800A03FBF /* Slider */,
+				4A905F87196410C600A03FBF /* Helpers */,
+				4A905F6319640EF600A03FBF /* Main.storyboard */,
 				4A905F6919640EF600A03FBF /* Images.xcassets */,
 				4A905F5819640EF600A03FBF /* Supporting Files */,
 			);
@@ -150,6 +158,24 @@
 				4A905F7919640EF600A03FBF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4A905F86196410B800A03FBF /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				4A905F8B196410ED00A03FBF /* MJPSlider.h */,
+				4A905F8C196410ED00A03FBF /* MJPSlider.m */,
+			);
+			name = Slider;
+			sourceTree = "<group>";
+		};
+		4A905F87196410C600A03FBF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4A905F88196410DB00A03FBF /* UIColor+Hex.h */,
+				4A905F89196410DB00A03FBF /* UIColor+Hex.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,8 +276,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A905F6819640EF600A03FBF /* ViewController.m in Sources */,
+				4A905F8A196410DB00A03FBF /* UIColor+Hex.m in Sources */,
 				4A905F6219640EF600A03FBF /* AppDelegate.m in Sources */,
 				4A905F5E19640EF600A03FBF /* main.m in Sources */,
+				4A905F8D196410ED00A03FBF /* MJPSlider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
