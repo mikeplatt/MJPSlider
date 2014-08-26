@@ -10,8 +10,8 @@
 
 typedef enum {
     
-    kSliderStyleSliding,
-    kSliderStyleDivided
+    MJPSliderStyleSliding,
+    MJPSliderStyleDivided
     
 } SliderStyle;
 
