@@ -10,6 +10,7 @@
 
 @interface MJPSlider ()
 
+@property (nonatomic, assign) CGFloat privateValue;
 @property (nonatomic, assign) CGPoint trackCenter;
 @property (nonatomic, assign) CGFloat valueMin;
 @property (nonatomic, assign) CGFloat valueMax;
@@ -97,7 +98,6 @@
     self.maxValue = 100.0;
     self.animationDuration = 0.2;
     self.format = @"%.2f";
-    self.value = 50.0;
 }
 
 
@@ -150,7 +150,7 @@
     _flagTitle.font = self.font;
     _flagTitle.textColor = self.textColor;
     _flagTitle.textAlignment = NSTextAlignmentCenter;
-    _flagTitle.text = [NSString stringWithFormat:self.format, self.value];
+    _flagTitle.text = [NSString stringWithFormat:self.format, _privateValue];
     [_flag addSubview:_flagTitle];
     
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragHandle:)];
@@ -173,6 +173,7 @@
     if(options) {
         
         self.style = MJPSliderStyleDivided;
+        self.format = @"%@ - %.2f";
         
         _titles = [NSMutableArray new];
         _values = [NSMutableArray new];
@@ -195,9 +196,7 @@
             [_points addObject:[NSNumber numberWithFloat:view.center.x]];
             theX += gap;
         }
-        
-        NSInteger selected = (_points.count + 1) / 2;
-        [self slideToValue:[NSNumber numberWithInteger:selected] animated:NO];
+        //[self setValue:0 animated:NO];
         
     } else {
         
@@ -232,30 +231,29 @@
         theX += gap;
     }
     
-    [self slideToValue:[NSNumber numberWithInteger:_currentIndex] animated:NO];
+    [self setValue:_currentIndex animated:NO];
 }
 
-- (void)slideToValue:(id)value animated:(BOOL)animated
+- (void)setValue:(CGFloat)value animated:(BOOL)animated
 {
     CGPoint newHandle;
     
     if(self.style == MJPSliderStyleSliding) {
         
-        CGFloat floatValue = [value floatValue];
-        floatValue = (floatValue < self.minValue) ? self.minValue : floatValue;
-        floatValue = (floatValue > self.maxValue) ? self.maxValue : floatValue;
-        newHandle =  CGPointMake([self positionFromValue:floatValue], _track.center.y);
-        _flagTitle.text = [NSString stringWithFormat:self.format, floatValue];
+        _privateValue = value;
+        _privateValue = (_privateValue < self.minValue) ? self.minValue : _privateValue;
+        _privateValue = (_privateValue > self.maxValue) ? self.maxValue : _privateValue;
+        newHandle =  CGPointMake([self positionFromValue:_privateValue], _track.center.y);
+        _flagTitle.text = [NSString stringWithFormat:self.format, _privateValue];
         
     } else {
         
-        NSInteger index = [value integerValue];
-        newHandle = CGPointMake([_points[index] floatValue], _track.center.y);
-        NSString *title = _titles[index];
-        CGFloat value = [_values[index] floatValue];
-        _flagTitle.text = [NSString stringWithFormat:self.format, title, value];
+        _currentIndex = value + 0.5;
+        newHandle = CGPointMake([_points[_currentIndex] floatValue], _track.center.y);
+        NSString *title = _titles[_currentIndex];
+        _privateValue = [_values[_currentIndex] floatValue];
+        _flagTitle.text = [NSString stringWithFormat:self.format, title, _privateValue];
     }
-    
     
     CGFloat constrainLeft = self.flagSize.width / 2;
     CGFloat constrainRight = self.frame.size.width - (self.flagSize.width / 2);
@@ -272,13 +270,14 @@
                              _handle.center = newHandle;
                              _flag.center = newFlag;
                              _slide.frame = slideFrame;
-                             
+                         } completion:^(BOOL finished) {
+                             [self.delegate sliderDidFinish:self];
                          }];
     } else {
-        
         _handle.center = newHandle;
         _flag.center = newFlag;
         _slide.frame = slideFrame;
+        [self.delegate sliderDidFinish:self];
     }
 }
 
@@ -319,13 +318,13 @@
         if(self.style == MJPSliderStyleSliding) {
         
             _handle.center = translated;
-            self.value = [self valueFromPosition:translated.x];
+            _privateValue = [self valueFromPosition:translated.x];
             
             if(self.round > 0) {
-                self.value = round(self.value / self.round) * self.round;
-            }
+                _privateValue = round(_privateValue / self.round) * self.round;
+            } 
             
-            _flagTitle.text = [NSString stringWithFormat:self.format, self.value];
+            _flagTitle.text = [NSString stringWithFormat:self.format, _privateValue];
             [self setSliderWidthToMeetPoint:translated animated:NO];
         
             if([self.delegate respondsToSelector:@selector(sliderDidMove:)]) {
@@ -344,9 +343,9 @@
                 [self setSliderWidthToMeetPoint:nearest animated:NO];
                 
                 if(before != self.currentIndex) {
-                    self.value = [_values[self.currentIndex] floatValue];
+                    _privateValue = [_values[self.currentIndex] floatValue];
                     NSString *title = _titles[self.currentIndex];
-                    _flagTitle.text = [NSString stringWithFormat:self.format, title, self.value];
+                    _flagTitle.text = [NSString stringWithFormat:self.format, title, _privateValue];
                     if([self.delegate respondsToSelector:@selector(sliderDidMove:)]) {
                         [self.delegate sliderDidMove:self];
                     }
@@ -363,9 +362,9 @@
                                      }];
                     
                     [self setSliderWidthToMeetPoint:nearest animated:YES];
-                    self.value = [_values[self.currentIndex] floatValue];
+                    _privateValue = [_values[self.currentIndex] floatValue];
                     NSString *title = _titles[self.currentIndex];
-                    _flagTitle.text = [NSString stringWithFormat:self.format, title, self.value];
+                    _flagTitle.text = [NSString stringWithFormat:self.format, title, _privateValue];
                     
                     if([self.delegate respondsToSelector:@selector(sliderDidMove:)]) {
                         [self.delegate sliderDidMove:self];
@@ -383,15 +382,15 @@
     if(gesture.state == UIGestureRecognizerStateEnded) {
         
         if(self.style == MJPSliderStyleSliding) {
-            self.value = [self valueFromPosition:_handle.center.x];
+            _privateValue = [self valueFromPosition:_handle.center.x];
             
             if(self.round > 0) {
-                self.value = round(self.value / self.round) * self.round;
+                _privateValue = round(_privateValue / self.round) * self.round;
             }
             
         } else {
             
-            self.value = [_values[self.currentIndex] floatValue];
+            _privateValue = [_values[self.currentIndex] floatValue];
         }
         
         if([self.delegate respondsToSelector:@selector(sliderDidFinish:)]) {
@@ -469,7 +468,7 @@
     if(_titles.count > 0) {
         [self updateDividers];
     } else {
-        [self slideToValue:[NSNumber numberWithFloat:self.value] animated:YES];
+        [self setValue:_privateValue animated:YES];
     }
 }
 
@@ -560,6 +559,11 @@
 
 
 #pragma mark - Getters / Setters
+
+- (CGFloat)value
+{
+    return _privateValue;
+}
 
 - (void)setTrackColor:(UIColor *)trackColor
 {
@@ -690,20 +694,12 @@
 - (void)setFormat:(NSString *)format
 {
     _format = format;
-    //_flagTitle.text = [NSString stringWithFormat:format, self.value];
 }
 
 - (void)setTextColor:(UIColor *)textColor
 {
     _textColor = textColor;
     _flagTitle.textColor = _textColor;
-}
-
-- (void)setValue:(CGFloat)value
-{
-    _value = value;
-    
-    //[self slideToValue:[NSNumber numberWithFloat:value] animated:NO];
 }
 
 - (void)setEnabled:(BOOL)enabled

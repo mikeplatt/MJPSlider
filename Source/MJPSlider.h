@@ -23,7 +23,7 @@ typedef enum {
 
 @property (nonatomic, assign) CGFloat minValue;
 @property (nonatomic, assign) CGFloat maxValue;
-@property (nonatomic, assign) CGFloat value;
+@property (nonatomic, readonly) CGFloat value;
 @property (nonatomic, assign) NSInteger currentIndex;
 
 @property (nonatomic, assign) SliderStyle style;
@@ -53,13 +53,11 @@ typedef enum {
 @property (nonatomic, strong) UIColor *textColor;
 
 @property (nonatomic, strong) NSString *format;
-@property (nonatomic, assign) NSInteger round;
-
+@property (nonatomic, assign) CGFloat round;
 
 - (void)setDividerPoints:(NSArray *)options;
-- (void)slideToValue:(id)value animated:(BOOL)animated;
+- (void)setValue:(CGFloat)value animated:(BOOL)animated;
 - (void)setEnabled:(BOOL)enabled animated:(BOOL)animated;
-- (CGFloat)percentageFromValue:(CGFloat)value;
 
 @end
 

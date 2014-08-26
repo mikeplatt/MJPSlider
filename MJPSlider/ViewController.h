@@ -14,5 +14,6 @@
 @property (nonatomic, weak) IBOutlet MJPSlider *example1;
 @property (nonatomic, weak) IBOutlet MJPSlider *example2;
 @property (nonatomic, weak) IBOutlet MJPSlider *example3;
+@property (nonatomic, weak) IBOutlet MJPSlider *example4;
 
 @end

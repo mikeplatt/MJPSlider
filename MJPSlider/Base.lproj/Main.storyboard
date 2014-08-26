@@ -13,60 +13,100 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daw-2A-bH4" userLabel="Example 1" customClass="MJPSlider">
-                                <rect key="frame" x="20" y="80" width="280" height="40"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mgi-5e-55v">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sej-jN-yxl" userLabel="ContentView">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AVV-t2-gNX" userLabel="Example 1" customClass="MJPSlider">
+                                                <rect key="frame" x="20" y="60" width="280" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="kQp-il-ohm"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="Vug-8J-pZT"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xfd-M4-nn9" userLabel="Example 2" customClass="MJPSlider">
+                                                <rect key="frame" x="20" y="160" width="280" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="XQU-2J-xti"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="aA0-xu-0Fc"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dS4-eM-7md" userLabel="Example 3" customClass="MJPSlider">
+                                                <rect key="frame" x="20" y="260" width="280" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="qWR-Mj-zJ8"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="wP1-sQ-VVJ"/>
+                                                </connections>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2wT-uo-3oN" userLabel="Example 4" customClass="MJPSlider">
+                                                <rect key="frame" x="20" y="360" width="280" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="3OB-A4-lhg"/>
+                                                </constraints>
+                                                <connections>
+                                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="bRP-A0-8kZ"/>
+                                                </connections>
+                                            </view>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="AVV-t2-gNX" firstAttribute="top" secondItem="sej-jN-yxl" secondAttribute="top" constant="60" id="BR8-PQ-g3E"/>
+                                            <constraint firstItem="xfd-M4-nn9" firstAttribute="top" secondItem="AVV-t2-gNX" secondAttribute="bottom" constant="60" id="ByD-YH-fXJ"/>
+                                            <constraint firstItem="xfd-M4-nn9" firstAttribute="leading" secondItem="sej-jN-yxl" secondAttribute="leading" constant="20" id="H4k-B5-e2E"/>
+                                            <constraint firstItem="AVV-t2-gNX" firstAttribute="leading" secondItem="sej-jN-yxl" secondAttribute="leading" constant="20" id="N7t-FK-DCY"/>
+                                            <constraint firstAttribute="trailing" secondItem="AVV-t2-gNX" secondAttribute="trailing" constant="20" id="PNa-2k-3tp"/>
+                                            <constraint firstAttribute="trailing" secondItem="xfd-M4-nn9" secondAttribute="trailing" constant="20" id="dEn-53-iSc"/>
+                                            <constraint firstItem="dS4-eM-7md" firstAttribute="top" secondItem="xfd-M4-nn9" secondAttribute="bottom" constant="60" id="hce-uc-g6n"/>
+                                            <constraint firstAttribute="trailing" secondItem="dS4-eM-7md" secondAttribute="trailing" constant="20" id="l5Q-L5-ven"/>
+                                            <constraint firstAttribute="trailing" secondItem="2wT-uo-3oN" secondAttribute="trailing" constant="20" id="np8-KT-hVa"/>
+                                            <constraint firstItem="2wT-uo-3oN" firstAttribute="top" secondItem="dS4-eM-7md" secondAttribute="bottom" constant="60" id="pQV-Cx-ZgS"/>
+                                            <constraint firstItem="2wT-uo-3oN" firstAttribute="leading" secondItem="sej-jN-yxl" secondAttribute="leading" constant="20" id="vzG-Ac-uZ1"/>
+                                            <constraint firstAttribute="height" constant="480" id="x52-mn-tUL"/>
+                                            <constraint firstItem="dS4-eM-7md" firstAttribute="leading" secondItem="sej-jN-yxl" secondAttribute="leading" constant="20" id="zL3-vR-9zs"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="bxW-9N-a7K"/>
+                                    <constraint firstItem="sej-jN-yxl" firstAttribute="width" secondItem="mgi-5e-55v" secondAttribute="width" id="1Hp-3N-yPc"/>
+                                    <constraint firstItem="sej-jN-yxl" firstAttribute="leading" secondItem="mgi-5e-55v" secondAttribute="leading" id="Ibi-F5-hsq"/>
+                                    <constraint firstAttribute="bottom" secondItem="sej-jN-yxl" secondAttribute="bottom" id="MsP-mz-NS1"/>
+                                    <constraint firstItem="sej-jN-yxl" firstAttribute="top" secondItem="mgi-5e-55v" secondAttribute="top" id="qUW-Io-xph"/>
                                 </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="7WM-A2-QSp"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jW8-Ge-vBw" userLabel="Example 2" customClass="MJPSlider">
-                                <rect key="frame" x="20" y="170" width="280" height="40"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Jre-Z4-FKy"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="pEZ-Yw-fO4"/>
-                                </connections>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ylP-Ae-kVO" userLabel="Example 3" customClass="MJPSlider">
-                                <rect key="frame" x="20" y="260" width="280" height="40"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="Tsa-xQ-1ss"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="vtg-Ye-xmA"/>
-                                </connections>
-                            </view>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jW8-Ge-vBw" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="35O-t5-nP9"/>
-                            <constraint firstItem="daw-2A-bH4" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="HEK-DF-KCH"/>
-                            <constraint firstItem="daw-2A-bH4" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="60" id="Zqt-4h-HV8"/>
-                            <constraint firstAttribute="trailing" secondItem="daw-2A-bH4" secondAttribute="trailing" constant="20" id="eH7-Y4-N1x"/>
-                            <constraint firstItem="ylP-Ae-kVO" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="20" id="jPo-ry-Te0"/>
-                            <constraint firstItem="jW8-Ge-vBw" firstAttribute="top" secondItem="daw-2A-bH4" secondAttribute="bottom" constant="50" id="jS4-22-ZTk"/>
-                            <constraint firstAttribute="trailing" secondItem="jW8-Ge-vBw" secondAttribute="trailing" constant="20" id="tvh-uc-5Y6"/>
-                            <constraint firstAttribute="trailing" secondItem="ylP-Ae-kVO" secondAttribute="trailing" constant="20" id="ueN-Mo-8dT"/>
-                            <constraint firstItem="ylP-Ae-kVO" firstAttribute="top" secondItem="jW8-Ge-vBw" secondAttribute="bottom" constant="50" id="y6u-3T-4JE"/>
+                            <constraint firstAttribute="trailing" secondItem="mgi-5e-55v" secondAttribute="trailing" id="iBw-cs-dfq"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="mgi-5e-55v" secondAttribute="bottom" id="tYK-zn-5QB"/>
+                            <constraint firstItem="mgi-5e-55v" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="uiG-We-UIL"/>
+                            <constraint firstItem="mgi-5e-55v" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="yWG-Q3-8qG"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="example1" destination="daw-2A-bH4" id="S6s-6F-Bd2"/>
-                        <outlet property="example2" destination="jW8-Ge-vBw" id="009-5r-Xu5"/>
-                        <outlet property="example3" destination="ylP-Ae-kVO" id="pmA-Gd-mSa"/>
+                        <outlet property="example1" destination="AVV-t2-gNX" id="Vqp-lP-fOP"/>
+                        <outlet property="example2" destination="xfd-M4-nn9" id="B3d-9r-3fe"/>
+                        <outlet property="example3" destination="dS4-eM-7md" id="7kA-bu-OEO"/>
+                        <outlet property="example4" destination="2wT-uo-3oN" id="TdQ-ha-DoZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
@@ -76,6 +116,6 @@
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
 </document>
