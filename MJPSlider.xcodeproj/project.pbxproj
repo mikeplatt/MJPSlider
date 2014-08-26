@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4A89819B19AC935100F69883 /* MJPSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89819A19AC935100F69883 /* MJPSlider.m */; };
+		4A89819F19ACAB1700F69883 /* MJPSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A89819E19ACAB1700F69883 /* MJPSlider.m */; };
 		4AEC031B198659D400C12DC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AEC031A198659D400C12DC0 /* Foundation.framework */; };
 		4AEC031D198659D400C12DC0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AEC031C198659D400C12DC0 /* CoreGraphics.framework */; };
 		4AEC031F198659D400C12DC0 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AEC031E198659D400C12DC0 /* UIKit.framework */; };
@@ -20,8 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4A89819919AC935100F69883 /* MJPSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJPSlider.h; sourceTree = "<group>"; };
-		4A89819A19AC935100F69883 /* MJPSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJPSlider.m; sourceTree = "<group>"; };
+		4A89819D19ACAB1700F69883 /* MJPSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MJPSlider.h; path = Source/MJPSlider.h; sourceTree = SOURCE_ROOT; };
+		4A89819E19ACAB1700F69883 /* MJPSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MJPSlider.m; path = Source/MJPSlider.m; sourceTree = SOURCE_ROOT; };
 		4AEC0317198659D400C12DC0 /* MJPSlider.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJPSlider.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AEC031A198659D400C12DC0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		4AEC031C198659D400C12DC0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -53,6 +53,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A89819C19ACAB0300F69883 /* Slider */ = {
+			isa = PBXGroup;
+			children = (
+				4A89819D19ACAB1700F69883 /* MJPSlider.h */,
+				4A89819E19ACAB1700F69883 /* MJPSlider.m */,
+			);
+			name = Slider;
+			sourceTree = "<group>";
+		};
 		4AEC030E198659D400C12DC0 = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +97,7 @@
 				4AEC032A198659D400C12DC0 /* AppDelegate.m */,
 				4AEC032F198659D400C12DC0 /* ViewController.h */,
 				4AEC0330198659D400C12DC0 /* ViewController.m */,
-				4A89819919AC935100F69883 /* MJPSlider.h */,
-				4A89819A19AC935100F69883 /* MJPSlider.m */,
+				4A89819C19ACAB0300F69883 /* Slider */,
 				4AEC032C198659D400C12DC0 /* Main.storyboard */,
 				4AEC0332198659D400C12DC0 /* Images.xcassets */,
 				4AEC0321198659D400C12DC0 /* Supporting Files */,
@@ -173,7 +181,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A89819B19AC935100F69883 /* MJPSlider.m in Sources */,
+				4A89819F19ACAB1700F69883 /* MJPSlider.m in Sources */,
 				4AEC0331198659D400C12DC0 /* ViewController.m in Sources */,
 				4AEC032B198659D400C12DC0 /* AppDelegate.m in Sources */,
 				4AEC0327198659D400C12DC0 /* main.m in Sources */,

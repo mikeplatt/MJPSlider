@@ -46,6 +46,7 @@
 @synthesize flagCornerRadius = _flagCornerRadius;
 @synthesize flagPadding = _flagPadding;
 @synthesize font = _font;
+@synthesize format = _format;
 @synthesize textColor = _textColor;
 @synthesize minValue = _minValue;
 @synthesize maxValue = _maxValue;
@@ -169,33 +170,48 @@
 
 - (void)setDividerPoints:(NSArray *)options
 {
-    self.style = MJPSliderStyleDivided;
-    self.format = @"%@ - %.2f";
-    
-    _titles = [NSMutableArray new];
-    _values = [NSMutableArray new];
-    _points = [NSMutableArray new];
-    
-    CGFloat total = self.frame.size.width - self.handleSize - (2 * self.handlePadding) - self.dividerWidth;
-    CGFloat gap = total / (options.count - 1);
-    CGFloat theX = (self.handleSize / 2) + self.handlePadding;
-    CGFloat height = _dividers.frame.size.height;
-    
-    for(int i = 0; i < options.count; i++) {
+    if(options) {
         
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(theX, 0.0, self.dividerWidth, height)];
-        view.backgroundColor = self.handleColor;
-        view.layer.cornerRadius = self.dividerWidth / 2;
-        [_dividers addSubview:view];
-        NSDictionary *option = options[i];
-        [_titles addObject:option[@"title"]];
-        [_values addObject:option[@"value"]];
-        [_points addObject:[NSNumber numberWithFloat:view.center.x]];
-        theX += gap;
+        self.style = MJPSliderStyleDivided;
+        
+        _titles = [NSMutableArray new];
+        _values = [NSMutableArray new];
+        _points = [NSMutableArray new];
+        
+        CGFloat total = self.frame.size.width - self.handleSize - (2 * self.handlePadding) - self.dividerWidth;
+        CGFloat gap = total / (options.count - 1);
+        CGFloat theX = (self.handleSize / 2) + self.handlePadding;
+        CGFloat height = _dividers.frame.size.height;
+        
+        for(int i = 0; i < options.count; i++) {
+            
+            UIView *view = [[UIView alloc] initWithFrame:CGRectMake(theX, 0.0, self.dividerWidth, height)];
+            view.backgroundColor = self.handleColor;
+            view.layer.cornerRadius = self.dividerWidth / 2;
+            [_dividers addSubview:view];
+            NSDictionary *option = options[i];
+            [_titles addObject:option[@"title"]];
+            [_values addObject:option[@"value"]];
+            [_points addObject:[NSNumber numberWithFloat:view.center.x]];
+            theX += gap;
+        }
+        
+        NSInteger selected = (_points.count + 1) / 2;
+        [self slideToValue:[NSNumber numberWithInteger:selected] animated:NO];
+        
+    } else {
+        
+        self.style = MJPSliderStyleSliding;
+        
+        _titles = nil;
+        _values = nil;
+        _points = nil;
+
+        for(UIView * subview in _dividers.subviews) {
+            
+            [subview removeFromSuperview];
+        }
     }
-    
-    NSInteger selected = (_points.count + 1) / 2;
-    [self slideToValue:[NSNumber numberWithInteger:selected] animated:NO];
 }
 
 - (void)updateDividers
@@ -669,6 +685,12 @@
 {
     _font = font;
     _flagTitle.font = font;
+}
+
+- (void)setFormat:(NSString *)format
+{
+    _format = format;
+    //_flagTitle.text = [NSString stringWithFormat:format, self.value];
 }
 
 - (void)setTextColor:(UIColor *)textColor

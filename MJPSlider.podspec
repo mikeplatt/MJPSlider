@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name              = 'MJPSlider'
-    s.version           = '0.0.4'
+    s.version           = '0.0.6'
     s.summary           = 'iOS Slider'
     s.homepage          = 'https://github.com/mikeplatt/MJPSlider'
     s.license           = {
@@ -15,7 +15,7 @@ Pod::Spec.new do |s|
         :git => 'https://github.com/mikeplatt/MJPSlider.git',
         :tag => s.version.to_s
     }
-    s.source_files      = 'MJPSlider/*.{m,h}'
+    s.source_files      = 'Source/*.{m,h}'
     s.requires_arc      = true
 	s.platform 			= :ios, "7.0"
 
