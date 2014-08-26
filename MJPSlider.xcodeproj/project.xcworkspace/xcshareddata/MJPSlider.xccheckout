@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>3EB3B613-655E-43A3-A4F8-8978FE789B61</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MJPSlider</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>D072BAAE-1B90-48AC-A96A-12727BAB5270</key>
+		<string>https://github.com/mikeplatt/MJPSlider.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MJPSlider.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>D072BAAE-1B90-48AC-A96A-12727BAB5270</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/mikeplatt/MJPSlider.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>D072BAAE-1B90-48AC-A96A-12727BAB5270</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>D072BAAE-1B90-48AC-A96A-12727BAB5270</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MJPSlider</string>
+		</dict>
+	</array>
+</dict>
+</plist>
