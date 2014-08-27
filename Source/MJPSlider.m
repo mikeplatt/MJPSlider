@@ -10,6 +10,7 @@
 
 @interface MJPSlider ()
 
+@property (nonatomic, assign) BOOL initialLayout;
 @property (nonatomic, assign) CGFloat privateValue;
 @property (nonatomic, assign) CGPoint trackCenter;
 @property (nonatomic, assign) CGFloat valueMin;
@@ -155,15 +156,6 @@
     
     _pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(dragHandle:)];
     [_handle addGestureRecognizer:_pan];
-    
-    
-    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(orientationChanged:) name:UIDeviceOrientationDidChangeNotification object:nil];
-}
-
-- (void)dealloc
-{
-    [self removeObserver:self forKeyPath:UIDeviceOrientationDidChangeNotification];
 }
 
 #pragma mark - Public
@@ -462,16 +454,6 @@
     [self addConstraint:_trackConstraintWidth];
 }
 
-- (void)orientationChanged:(id)sender
-{
-    [self calculateMinMax];
-    if(_titles.count > 0) {
-        [self updateDividers];
-    } else {
-        [self setValue:_privateValue animated:YES];
-    }
-}
-
 #pragma mark - Value
 
 - (CGFloat)percentageFromPosition:(CGFloat)position
@@ -719,6 +701,23 @@
             self.alpha = alpha;
         }];
     }
+}
+
+- (void)setFrame:(CGRect)frame
+{
+    [super setFrame:frame];
+    
+    if(_initialLayout) {
+        
+        [self calculateMinMax];
+        if(_titles.count > 0) {
+            [self updateDividers];
+        } else {
+            [self setValue:_privateValue animated:YES];
+        }
+    }
+    
+    _initialLayout = YES;
 }
 
 @end
