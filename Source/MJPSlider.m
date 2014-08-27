@@ -10,7 +10,6 @@
 
 @interface MJPSlider ()
 
-@property (nonatomic, assign) BOOL initialLayout;
 @property (nonatomic, assign) CGFloat privateValue;
 @property (nonatomic, assign) CGPoint trackCenter;
 @property (nonatomic, assign) CGFloat valueMin;
@@ -167,6 +166,10 @@
         self.style = MJPSliderStyleDivided;
         self.format = @"%@ - %.2f";
         
+        for(UIView * subview in _dividers.subviews) {
+            [subview removeFromSuperview];
+        }
+        
         _titles = [NSMutableArray new];
         _values = [NSMutableArray new];
         _points = [NSMutableArray new];
@@ -199,7 +202,6 @@
         _points = nil;
 
         for(UIView * subview in _dividers.subviews) {
-            
             [subview removeFromSuperview];
         }
     }
@@ -454,6 +456,18 @@
     [self addConstraint:_trackConstraintWidth];
 }
 
+- (void)layoutSubviews
+{
+    [super layoutSubviews];
+    
+    [self calculateMinMax];
+    if(_titles.count > 0) {
+        [self updateDividers];
+    } else {
+        [self setValue:_privateValue animated:YES];
+    }
+}
+
 #pragma mark - Value
 
 - (CGFloat)percentageFromPosition:(CGFloat)position
@@ -701,23 +715,6 @@
             self.alpha = alpha;
         }];
     }
-}
-
-- (void)setFrame:(CGRect)frame
-{
-    [super setFrame:frame];
-    
-    if(_initialLayout) {
-        
-        [self calculateMinMax];
-        if(_titles.count > 0) {
-            [self updateDividers];
-        } else {
-            [self setValue:_privateValue animated:YES];
-        }
-    }
-    
-    _initialLayout = YES;
 }
 
 @end

@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name              = 'MJPSlider'
-    s.version           = '0.1.0'
+    s.version           = '0.0.9'
     s.summary           = 'iOS Slider'
     s.homepage          = 'https://github.com/mikeplatt/MJPSlider'
     s.license           = {
