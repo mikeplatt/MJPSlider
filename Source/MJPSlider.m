@@ -264,14 +264,11 @@
                              _handle.center = newHandle;
                              _flag.center = newFlag;
                              _slide.frame = slideFrame;
-                         } completion:^(BOOL finished) {
-                             [self.delegate sliderDidFinish:self];
-                         }];
+                         } completion:nil];
     } else {
         _handle.center = newHandle;
         _flag.center = newFlag;
         _slide.frame = slideFrame;
-        [self.delegate sliderDidFinish:self];
     }
 }
 
@@ -540,17 +537,6 @@
     self.currentIndex = index;
     CGFloat pointX = [_points[index] floatValue];
     return CGPointMake(pointX, _trackCenter.y);
-}
-
-#pragma mark - Color
-
-- (UIColor *)shadeOfColor:(UIColor *)color shade:(CGFloat)shade
-{
-    CGFloat h, s, b, a;
-    if([color getHue:&h saturation:&s brightness:&b alpha:&a]) {
-        return [UIColor colorWithHue:h saturation:s brightness:MIN(b * shade, 1.0) alpha:a];
-    }
-    return color;
 }
 
 
