@@ -467,9 +467,9 @@ typedef enum {
                                      }];
                     
                     if(isLowerHandle) {
-                        [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:NO];
+                        [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:YES];
                     } else {
-                        [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:NO];
+                        [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:YES];
                     }
                     
                     _privateLowerValue = (isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
