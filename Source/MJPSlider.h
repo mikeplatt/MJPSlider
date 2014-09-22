@@ -27,10 +27,8 @@
 @property (nonatomic, strong) UIColor *trackColor;
 @property (nonatomic, assign) CGFloat trackWidth;
 
-@property (nonatomic, strong) UIColor *highlightColor;
 @property (nonatomic, assign) CGFloat highlightPadding;
 
-@property (nonatomic, strong) UIColor *handleColor;
 @property (nonatomic, assign) CGFloat handleSize;
 @property (nonatomic, assign) CGFloat handlePadding;
 

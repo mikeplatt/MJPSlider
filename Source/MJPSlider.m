@@ -55,9 +55,7 @@ typedef enum {
 @synthesize isRangeSlider = _isRangeSlider;
 @synthesize trackColor = _trackColor;
 @synthesize trackWidth = _trackWidth;
-@synthesize highlightColor = _highlightColor;
 @synthesize highlightPadding = _highlightPadding;
-@synthesize handleColor = _handleColor;
 @synthesize handleSize = _handleSize;
 @synthesize handlePadding = _handlePadding;
 @synthesize dividerWidth = _dividerWidth;
@@ -100,19 +98,17 @@ typedef enum {
 - (void)defaultValues
 {
     self.trackColor = [UIColor colorWithWhite:0.8 alpha:1.0];
-    self.trackWidth = 10.0;
-    self.highlightColor = [[UIColor redColor] colorWithAlphaComponent:0.3];
+    self.trackWidth = 2.0;
     self.highlightPadding = 0.0;
-    self.handleColor = [UIColor redColor];
-    self.handleSize = 22.0;
+    self.handleSize = 26.0;
     self.handlePadding = 11.0;
     self.dividerWidth = 1.0;
     self.dividerPadding = 0.0;
     self.showFlag = YES;
-    self.flagColor = [UIColor colorWithWhite:0.8 alpha:1.0];
+    self.flagColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     self.flagSize = CGSizeMake(160.0, 30.0);
     self.flagCornerRadius = 5.0;
-    self.flagPadding = 14.0;
+    self.flagPadding = 16.0;
     self.font = [UIFont systemFontOfSize:14.0];
     self.textColor = [UIColor darkGrayColor];
     self.minValue = 0.0;
@@ -142,7 +138,7 @@ typedef enum {
     slideFrame.size.width = _track.bounds.size.width / 2;
     _slide = [CALayer layer];
     _slide.frame = slideFrame;
-    _slide.backgroundColor = self.highlightColor.CGColor;
+    _slide.backgroundColor = self.tintColor.CGColor;
     [_track.layer addSublayer:_slide];
     
     _dividers = [[UIView alloc] initWithFrame:CGRectMake(0.0, 0.0, self.frame.size.width, self.trackWidth - (2 * self.dividerPadding))];
@@ -150,7 +146,7 @@ typedef enum {
     [self addSubview:_dividers];
     
     _lowerHandle = [[MJPSliderHandle alloc] initWithFrame:CGRectMake(0.0, 0.0, self.handleSize, self.handleSize)];
-    _lowerHandle.backgroundColor = self.handleColor;
+    _lowerHandle.backgroundColor = [UIColor whiteColor];
     _lowerHandle.center = _trackCenter;
     _lowerHandle.layer.cornerRadius = self.handleSize / 2;
     [self addSubview:_lowerHandle];
@@ -178,7 +174,7 @@ typedef enum {
     
     
     _upperHandle = [[MJPSliderHandle alloc] initWithFrame:CGRectMake(0.0, 0.0, self.handleSize, self.handleSize)];
-    _upperHandle.backgroundColor = self.handleColor;
+    _upperHandle.backgroundColor = [UIColor whiteColor];
     _upperHandle.center = _trackCenter;
     _upperHandle.layer.cornerRadius = self.handleSize / 2;
     _upperHandle.hidden = YES;
@@ -233,7 +229,7 @@ typedef enum {
         for(int i = 0; i < options.count; i++) {
             
             UIView *view = [[UIView alloc] initWithFrame:CGRectMake(theX, 0.0, self.dividerWidth, height)];
-            view.backgroundColor = self.handleColor;
+            view.backgroundColor = self.tintColor;
             view.layer.cornerRadius = self.dividerWidth / 2;
             [_dividers addSubview:view];
             NSDictionary *option = options[i];
@@ -269,7 +265,7 @@ typedef enum {
     for(UIView * subview in _dividers.subviews) {
         
         subview.frame = CGRectMake(theX, 0.0, self.dividerWidth, height);
-        subview.backgroundColor = self.handleColor;
+        subview.backgroundColor = self.tintColor;
         subview.layer.cornerRadius = self.dividerWidth / 2;
         [_points addObject:[NSNumber numberWithFloat:subview.center.x]];
         theX += gap;
@@ -763,6 +759,12 @@ typedef enum {
     _lightTrackColor = [trackColor colorWithAlphaComponent:0.6];
 }
 
+- (void)setTintColor:(UIColor *)tintColor
+{
+    [super setTintColor:tintColor];
+    _slide.backgroundColor = tintColor.CGColor;
+}
+
 - (void)setTrackWidth:(CGFloat)trackWidth
 {
     _trackWidth = trackWidth;
@@ -779,25 +781,12 @@ typedef enum {
     _slide.frame = CGRectMake(0.0, 0.0, _slide.bounds.size.width, trackWidth);
 }
 
-- (void)setHighlightColor:(UIColor *)highlightColor
-{
-    _highlightColor = highlightColor;
-    _slide.backgroundColor = highlightColor.CGColor;
-}
-
 - (void)setHighlightPadding:(CGFloat)highlightPadding
 {
     _highlightPadding = highlightPadding;
     _track.layer.borderWidth = highlightPadding;
     _track.layer.borderColor = self.trackColor.CGColor;
     _track.backgroundColor = _lightTrackColor;
-}
-
-- (void)setHandleColor:(UIColor *)handleColor
-{
-    _handleColor = handleColor;
-    _lowerHandle.backgroundColor = handleColor;
-    _upperHandle.backgroundColor = handleColor;
 }
 
 - (void)setHandleSize:(CGFloat)handleSize
@@ -956,6 +945,14 @@ typedef enum {
         } else {
             self.hitFrame = frame;
         }
+        self.layer.shadowPath = [UIBezierPath bezierPathWithOvalInRect:self.bounds].CGPath;
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowRadius = 2.0;
+        self.layer.shadowOffset = CGSizeMake(-1.0, 2.0);
+        self.layer.shadowOpacity = 0.1;
+        self.layer.masksToBounds = NO;
+        self.layer.borderWidth = 0.5;
+        self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
     }
     
     return self;
