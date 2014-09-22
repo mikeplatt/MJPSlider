@@ -493,9 +493,21 @@ typedef enum {
         }
         
         translated.y = (isLowerHandle) ? _lowerFlag.center.y : _upperFlag.center.y;
-        translated.x = MAX(translated.x, self.flagSize.width / 2);
-        translated.x = MIN(self.frame.size.width - (self.flagSize.width / 2), translated.x);
-        if(isLowerHandle) { _lowerFlag.center = translated; } else { _upperFlag.center = translated; }
+        if(isLowerHandle && self.isRangeSlider) {
+            translated.x = MAX(translated.x, (self.flagSize.width / 2));
+            translated.x = MIN(self.frame.size.width - (self.flagSize.width * 1.5), translated.x);
+        } else if(!isLowerHandle) {
+            translated.x = MAX(translated.x, (self.flagSize.width * 1.5));
+            translated.x = MIN(self.frame.size.width - (self.flagSize.width / 2), translated.x);
+        } else {
+            translated.x = MAX(translated.x, self.flagSize.width / 2);
+            translated.x = MIN(self.frame.size.width - (self.flagSize.width / 2), translated.x);
+        }
+        if(isLowerHandle) {
+            _lowerFlag.center = translated;
+        } else {
+            _upperFlag.center = translated;
+        }
     }
     
     if(gesture.state == UIGestureRecognizerStateEnded) {
@@ -672,14 +684,9 @@ typedef enum {
 - (CGFloat)sizeOfMinRange
 {
     CGFloat total = self.maxValue - self.minValue;
-    NSLog(@"total: %.2f", total);
     CGFloat percent = self.minRange / (total / 100.0);
-    NSLog(@"percent: %.2f", percent);
     CGFloat distance = self.frame.size.width - self.handleSize - (2 * self.handlePadding);
-    NSLog(@"distance: %.2f", distance);
-    CGFloat result = ((distance / 100) * percent);
-    NSLog(@"result: %.2f", result);
-    return result;
+    return ((distance / 100) * percent);
 }
 
 

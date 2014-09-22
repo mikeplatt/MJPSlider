@@ -28,7 +28,7 @@
     self.example2.highlightColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
     self.example2.minValue = 10.0;
     self.example2.maxValue = 30.0;
-    self.example2.minRange = 1.0;
+    self.example2.minRange = 5.0;
     self.example2.flagSize = CGSizeMake(50.0, 30.0);
     self.example2.round = 0.2;
     [self.example2 setLowerValue:10.0 andUpperValue:30.0 animated:NO];
