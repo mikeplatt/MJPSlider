@@ -103,11 +103,11 @@ typedef enum {
     self.handleSize = 26.0;
     self.handlePadding = 11.0;
     self.dividerWidth = 1.0;
-    self.dividerPadding = 0.0;
+    self.dividerPadding = 5.0;
     self.showFlag = YES;
     self.flagColor = [UIColor colorWithWhite:0.9 alpha:1.0];
     self.flagSize = CGSizeMake(160.0, 30.0);
-    self.flagCornerRadius = 5.0;
+    self.flagCornerRadius = 2.0;
     self.flagPadding = 16.0;
     self.font = [UIFont systemFontOfSize:14.0];
     self.textColor = [UIColor darkGrayColor];
@@ -834,7 +834,7 @@ typedef enum {
     _dividerPadding = dividerPadding;
     _dividers.bounds = CGRectMake(0.0, 0.0, self.frame.size.width, self.trackWidth + (2 * dividerPadding));
     _dividers.center = _trackCenter;
-    if(self.style == MJPSliderStyleDivided && _titles.count > 0) {
+    if((self.style == MJPSliderStyleDivided || self.style == MJPSliderStyleRangeDivided) && _titles.count > 0) {
         [self updateDividers];
     }
 }
