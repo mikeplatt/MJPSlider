@@ -8,25 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
-typedef enum {
-    
-    MJPSliderStyleSliding,
-    MJPSliderStyleDivided
-    
-} SliderStyle;
-
 @protocol MJPSliderDelegate;
 
 @interface MJPSlider : UIControl
 
 @property (nonatomic, assign) IBOutlet id<MJPSliderDelegate> delegate;
 
+@property (nonatomic, assign) BOOL isRangeSlider;
+
 @property (nonatomic, assign) CGFloat minValue;
 @property (nonatomic, assign) CGFloat maxValue;
 @property (nonatomic, readonly) CGFloat value;
-@property (nonatomic, assign) NSInteger currentIndex;
-
-@property (nonatomic, assign) SliderStyle style;
+@property (nonatomic, readonly) CGFloat lowerValue;
+@property (nonatomic, readonly) CGFloat upperValue;
 
 @property (nonatomic, assign) CGFloat animationDuration;
 
@@ -54,9 +48,11 @@ typedef enum {
 
 @property (nonatomic, strong) NSString *format;
 @property (nonatomic, assign) CGFloat round;
+@property (nonatomic, assign) CGFloat minRange;
 
 - (void)setDividerPoints:(NSArray *)options;
 - (void)setValue:(CGFloat)value animated:(BOOL)animated;
+- (void)setLowerValue:(CGFloat)lowerValue andUpperValue:(CGFloat)upperValue animated:(BOOL)animated;
 - (void)setEnabled:(BOOL)enabled animated:(BOOL)animated;
 
 @end

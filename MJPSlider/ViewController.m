@@ -20,14 +20,18 @@
     
     self.example1.tag = 0;
     self.example1.showFlag = NO;
+    [self.example1 setValue:50.0 animated:NO];
     
     self.example2.tag = 1;
+    self.example2.isRangeSlider = YES;
     self.example2.handleColor = [UIColor greenColor];
     self.example2.highlightColor = [[UIColor greenColor] colorWithAlphaComponent:0.5];
     self.example2.minValue = 10.0;
     self.example2.maxValue = 30.0;
+    self.example2.minRange = 1.0;
+    self.example2.flagSize = CGSizeMake(50.0, 30.0);
     self.example2.round = 0.2;
-    [self.example2 setValue:20.0 animated:NO];
+    [self.example2 setLowerValue:10.0 andUpperValue:30.0 animated:NO];
     
     
     self.example3.tag = 2;
