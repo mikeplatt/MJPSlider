@@ -435,13 +435,10 @@ typedef enum {
             
                 gesture.view.center = nearest;
                 
-                if(isLowerHandle) {
-                    [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:NO];
-                } else {
-                    [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:NO];
-                }
-                
                 if(isLowerHandle && before != _currentLowerIndex) {
+                    
+                    [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:NO];
+                    
                     _privateLowerValue = (isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
                     
                     NSString *lowerTitle = _titles[_currentLowerIndex];
@@ -453,6 +450,9 @@ typedef enum {
                 }
                 
                 if(!isLowerHandle && before != _currentUpperIndex) {
+                    
+                    [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:NO];
+                    
                     _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [_values[_currentUpperIndex] floatValue];
                     
                     NSString *upperTitle = _titles[_currentUpperIndex];
@@ -467,11 +467,12 @@ typedef enum {
             
                 if(isLowerHandle && before != _currentLowerIndex) {
                     
+                    [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:YES];
+                    
                     [UIView animateWithDuration:self.animationDuration
                                      animations:^{
                                          _lowerHandle.center = nearest;
                                      }];
-                    [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:YES];
                     
                     _privateLowerValue = [_values[_currentLowerIndex] floatValue];
                     
@@ -485,11 +486,12 @@ typedef enum {
                 
                 if(!isLowerHandle && before != _currentUpperIndex) {
                     
+                    [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:YES];
+                    
                     [UIView animateWithDuration:self.animationDuration
                                      animations:^{
                                          _upperHandle.center = nearest;
                                      }];
-                    [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:YES];
                     
                     _privateUpperValue = [_values[_currentUpperIndex] floatValue];
                     
@@ -537,7 +539,7 @@ typedef enum {
         } else {
             
             _privateLowerValue = (isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
-            _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [_values[_currentLowerIndex] floatValue];
+            _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [_values[_currentUpperIndex] floatValue];
         }
         
         if([self.delegate respondsToSelector:@selector(sliderDidFinish:)]) {
@@ -722,12 +724,16 @@ typedef enum {
     }
     index = MIN(_points.count - 1, index);
     index = MAX(index, 0);
-    if(lowerHandle) {
-        index = MIN(_currentUpperIndex - self.minRange, index);
-       _currentLowerIndex = index;
+    if(self.isRangeSlider) {
+        if(lowerHandle) {
+            index = MIN(_currentUpperIndex - self.minRange, index);
+            _currentLowerIndex = index;
+        } else {
+            index = MAX(index, _currentLowerIndex + self.minRange);
+            _currentUpperIndex = index;
+        }
     } else {
-        index = MAX(index, _currentLowerIndex + self.minRange);
-        _currentUpperIndex = index;
+        _currentLowerIndex = index;
     }
     CGFloat pointX = [_points[index] floatValue];
     return CGPointMake(pointX, _trackCenter.y);
