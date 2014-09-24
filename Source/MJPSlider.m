@@ -473,7 +473,7 @@ typedef enum {
                                      }];
                     [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:YES];
                     
-                    _privateLowerValue = (isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
+                    _privateLowerValue = [_values[_currentLowerIndex] floatValue];
                     
                     NSString *lowerTitle = _titles[_currentLowerIndex];
                     _lowerFlagTitle.text = [NSString stringWithFormat:self.format, lowerTitle, _privateLowerValue];
@@ -491,7 +491,7 @@ typedef enum {
                                      }];
                     [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:YES];
                     
-                    _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [_values[_currentLowerIndex] floatValue];
+                    _privateUpperValue = [_values[_currentUpperIndex] floatValue];
                     
                     NSString *upperTitle = _titles[_currentUpperIndex];
                     _upperFlagTitle.text = [NSString stringWithFormat:self.format, upperTitle, _privateUpperValue];
