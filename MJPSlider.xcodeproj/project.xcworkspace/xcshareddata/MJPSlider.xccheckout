@@ -10,29 +10,29 @@
 	<string>MJPSlider</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>D072BAAE-1B90-48AC-A96A-12727BAB5270</key>
+		<key>3495360226B98A5F80BDE4BEC07C74AC110457D8</key>
 		<string>https://github.com/mikeplatt/MJPSlider.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>MJPSlider.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>D072BAAE-1B90-48AC-A96A-12727BAB5270</key>
+		<key>3495360226B98A5F80BDE4BEC07C74AC110457D8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/mikeplatt/MJPSlider.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>D072BAAE-1B90-48AC-A96A-12727BAB5270</string>
+	<string>3495360226B98A5F80BDE4BEC07C74AC110457D8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>D072BAAE-1B90-48AC-A96A-12727BAB5270</string>
+			<string>3495360226B98A5F80BDE4BEC07C74AC110457D8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>MJPSlider</string>
 		</dict>

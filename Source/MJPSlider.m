@@ -738,8 +738,10 @@ typedef enum {
 {
     _isRangeSlider = isRangeSlider;
     _upperHandle.hidden = !isRangeSlider;
-    _upperFlag.hidden = !isRangeSlider;
-    _upperTriangle.hidden = !isRangeSlider;
+    if(self.showFlag) {
+        _upperFlag.hidden = !isRangeSlider;
+        _upperTriangle.hidden = !isRangeSlider;
+    }
     
     if(isRangeSlider && _style == MJPSliderStyleSliding) {
         self.style = MJPSliderStyleRangeSliding;
