@@ -42,11 +42,12 @@
     
     self.example4.tag = 3;
     self.example4.isRangeSlider = YES;
-    self.example4.flagSize = CGSizeMake(70.0, 30.0);
+    self.example4.flagSize = CGSizeMake(120.0, 30.0);
     self.example4.tintColor = [UIColor redColor];
-    [self.example4 setDividerPoints:@[ @{ @"title" : @"Basic", @"value" : @23.50 }, @{ @"title" : @"Standard", @"value" : @32.99 }, @{ @"title" : @"Delux", @"value" : @39.00 } ]];
+    [self.example4 setDividerPoints:@[ @{ @"title" : @"Basic", @"value" : @23.50 }, @{ @"title" : @"Standard", @"value" : @32.99 }, @{ @"title" : @"Delux", @"value" : @39.00 }, @{ @"title" : @"Extreme", @"value" : @52.00 }, @{ @"title" : @"Super", @"value" : @70.00 } ]];
     self.example4.format = @"%@";
-    [self.example4 setValue:1.00 animated:NO];
+    self.example4.minRange = 1;
+    [self.example4 setLowerValue:0 andUpperValue:4 animated:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -56,17 +57,29 @@
 
 - (void)sliderWillMove:(MJPSlider *)slider
 {
-    NSLog(@"EXAMPLE %ld - WILL MOVE: %.2f", (long)slider.tag, slider.value);
+    if(slider.isRangeSlider) {
+        NSLog(@"EXAMPLE %ld - WILL MOVE - LOWER VALUE: %.2f  UPPER VALUE: %.2f", (long)slider.tag, slider.lowerValue, slider.upperValue);
+    } else {
+        NSLog(@"EXAMPLE %ld - WILL MOVE: %.2f", (long)slider.tag, slider.value);
+    }
 }
 
 - (void)sliderDidMove:(MJPSlider *)slider
 {
-    NSLog(@"EXAMPLE %ld - DID MOVE: %.2f", (long)slider.tag, slider.value);
+    if(slider.isRangeSlider) {
+        NSLog(@"EXAMPLE %ld - DID MOVE - LOWER VALUE: %.2f  UPPER VALUE: %.2f", (long)slider.tag, slider.lowerValue, slider.upperValue);
+    } else {
+        NSLog(@"EXAMPLE %ld - DID MOVE: %.2f", (long)slider.tag, slider.value);
+    }
 }
 
 - (void)sliderDidFinish:(MJPSlider *)slider
 {
-    NSLog(@"EXAMPLE %ld - DID FINISH: %.2f", (long)slider.tag, slider.value);
+    if(slider.isRangeSlider) {
+        NSLog(@"EXAMPLE %ld - DID FINISH - LOWER VALUE: %.2f  UPPER VALUE: %.2f", (long)slider.tag, slider.lowerValue, slider.upperValue);
+    } else {
+        NSLog(@"EXAMPLE %ld - DID FINISH: %.2f", (long)slider.tag, slider.value);
+    }
 }
 
 @end
