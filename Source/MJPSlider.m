@@ -307,7 +307,7 @@ typedef enum {
         _privateLowerValue = [_values[_currentLowerIndex] floatValue];
         _lowerFlagTitle.text = [NSString stringWithFormat:self.format, lowerTitle, _privateLowerValue];
         
-        _currentUpperIndex = upperValue; NSLog(@"%ld", _currentUpperIndex);
+        _currentUpperIndex = upperValue;
         newUpperHandle = CGPointMake([_points[_currentUpperIndex] floatValue], _track.center.y);
         NSString *upperTitle = _titles[_currentUpperIndex];
         _privateUpperValue = [_values[_currentUpperIndex] floatValue];
