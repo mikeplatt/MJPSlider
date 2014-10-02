@@ -146,7 +146,7 @@ typedef enum {
     [self addSubview:_dividers];
     
     _lowerHandle = [[MJPSliderHandle alloc] initWithFrame:CGRectMake(0.0, 0.0, self.handleSize, self.handleSize)];
-    _lowerHandle.backgroundColor = [UIColor whiteColor];
+    _lowerHandle.layer.backgroundColor = [UIColor whiteColor].CGColor;
     _lowerHandle.center = _trackCenter;
     _lowerHandle.layer.cornerRadius = self.handleSize / 2;
     [self addSubview:_lowerHandle];
@@ -174,7 +174,7 @@ typedef enum {
     
     
     _upperHandle = [[MJPSliderHandle alloc] initWithFrame:CGRectMake(0.0, 0.0, self.handleSize, self.handleSize)];
-    _upperHandle.backgroundColor = [UIColor whiteColor];
+    _upperHandle.layer.backgroundColor = [UIColor whiteColor].CGColor;
     _upperHandle.center = _trackCenter;
     _upperHandle.layer.cornerRadius = self.handleSize / 2;
     _upperHandle.hidden = YES;
@@ -981,6 +981,8 @@ typedef enum {
         self.layer.masksToBounds = NO;
         self.layer.borderWidth = 0.5;
         self.layer.borderColor = [UIColor colorWithWhite:0.8 alpha:1.0].CGColor;
+        self.layer.rasterizationScale = [UIScreen mainScreen].scale;
+        self.layer.shouldRasterize = YES;
     }
     
     return self;
