@@ -373,7 +373,7 @@ typedef enum {
 
 - (void)dragHandle:(UIPanGestureRecognizer *)gesture
 {
-    BOOL isLowerHandle = (gesture.view == _lowerHandle) ? YES : NO;
+    self.isLowerHandle = (gesture.view == _lowerHandle) ? YES : NO;
     
     if(gesture.state == UIGestureRecognizerStateBegan) {
         
@@ -389,11 +389,11 @@ typedef enum {
         
         if(self.style == MJPSliderStyleSliding || self.style == MJPSliderStyleRangeSliding) {
             
-            if(isLowerHandle && self.isRangeSlider) {
+            if(self.isLowerHandle && self.isRangeSlider) {
                 CGFloat minDistance = [self sizeOfMinRange];
                 translated.x = MAX(translated.x, _valueMin);
                 translated.x = MIN(_upperHandle.center.x - minDistance, translated.x);
-            } else if(!isLowerHandle) {
+            } else if(!self.isLowerHandle) {
                 CGFloat minDistance = [self sizeOfMinRange];
                 translated.x = MAX(translated.x, _lowerHandle.center.x + minDistance);
                 translated.x = MIN(_valueMax, translated.x);
@@ -403,17 +403,17 @@ typedef enum {
             }
         
             gesture.view.center = translated;
-            _privateLowerValue = (isLowerHandle) ? [self valueFromPosition:translated.x] : _privateLowerValue;
-            _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [self valueFromPosition:translated.x];
+            _privateLowerValue = (self.isLowerHandle) ? [self valueFromPosition:translated.x] : _privateLowerValue;
+            _privateUpperValue = (self.isLowerHandle) ? _privateUpperValue : [self valueFromPosition:translated.x];
             
-            if(self.round > 0 && isLowerHandle) {
+            if(self.round > 0 && self.isLowerHandle) {
                 _privateLowerValue = round(_privateLowerValue / self.round) * self.round;
             }
-            if(self.round > 0 && !isLowerHandle) {
+            if(self.round > 0 && !self.isLowerHandle) {
                 _privateUpperValue = round(_privateUpperValue / self.round) * self.round;
             }
             
-            if(isLowerHandle) {
+            if(self.isLowerHandle) {
                 _lowerFlagTitle.text = [NSString stringWithFormat:self.format, _privateLowerValue];
                 [self setSliderWidthToMeetPointLowerHandleAtPoint:translated animated:NO];
             } else {
@@ -427,19 +427,19 @@ typedef enum {
             
         } else {
             
-            NSInteger before = (isLowerHandle) ?  _currentLowerIndex : _currentUpperIndex;
+            NSInteger before = (self.isLowerHandle) ?  _currentLowerIndex : _currentUpperIndex;
             CGPoint velocity = [gesture velocityInView:self];
-            CGPoint nearest = [self nearestPointToValue:translated.x forLowerHandle:isLowerHandle];
+            CGPoint nearest = [self nearestPointToValue:translated.x forLowerHandle:self.isLowerHandle];
             
             if(velocity.x > 500.0 || velocity.x < -500.0) {
             
                 gesture.view.center = nearest;
                 
-                if(isLowerHandle && before != _currentLowerIndex) {
+                if(self.isLowerHandle && before != _currentLowerIndex) {
                     
                     [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:NO];
                     
-                    _privateLowerValue = (isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
+                    _privateLowerValue = (self.isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
                     
                     NSString *lowerTitle = _titles[_currentLowerIndex];
                     _lowerFlagTitle.text = [NSString stringWithFormat:self.format, lowerTitle, _privateLowerValue];
@@ -449,11 +449,11 @@ typedef enum {
                     }
                 }
                 
-                if(!isLowerHandle && before != _currentUpperIndex) {
+                if(!self.isLowerHandle && before != _currentUpperIndex) {
                     
                     [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:NO];
                     
-                    _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [_values[_currentUpperIndex] floatValue];
+                    _privateUpperValue = (self.isLowerHandle) ? _privateUpperValue : [_values[_currentUpperIndex] floatValue];
                     
                     NSString *upperTitle = _titles[_currentUpperIndex];
                     _upperFlagTitle.text = [NSString stringWithFormat:self.format, upperTitle, _privateUpperValue];
@@ -465,7 +465,7 @@ typedef enum {
                 
             } else {
             
-                if(isLowerHandle && before != _currentLowerIndex) {
+                if(self.isLowerHandle && before != _currentLowerIndex) {
                     
                     [self setSliderWidthToMeetPointLowerHandleAtPoint:nearest animated:YES];
                     
@@ -484,7 +484,7 @@ typedef enum {
                     }
                 }
                 
-                if(!isLowerHandle && before != _currentUpperIndex) {
+                if(!self.isLowerHandle && before != _currentUpperIndex) {
                     
                     [self setSliderWidthToMeetPointUpperHandleAtPoint:nearest animated:YES];
                     
@@ -505,18 +505,18 @@ typedef enum {
             }
         }
         
-        translated.y = (isLowerHandle) ? _lowerFlag.center.y : _upperFlag.center.y;
-        if(isLowerHandle && self.isRangeSlider) {
+        translated.y = (self.isLowerHandle) ? _lowerFlag.center.y : _upperFlag.center.y;
+        if(self.isLowerHandle && self.isRangeSlider) {
             translated.x = MAX(translated.x, (self.flagSize.width / 2));
             translated.x = MIN(self.frame.size.width - (self.flagSize.width * 1.5), translated.x);
-        } else if(!isLowerHandle) {
+        } else if(!self.isLowerHandle) {
             translated.x = MAX(translated.x, (self.flagSize.width * 1.5));
             translated.x = MIN(self.frame.size.width - (self.flagSize.width / 2), translated.x);
         } else {
             translated.x = MAX(translated.x, self.flagSize.width / 2);
             translated.x = MIN(self.frame.size.width - (self.flagSize.width / 2), translated.x);
         }
-        if(isLowerHandle) {
+        if(self.isLowerHandle) {
             _lowerFlag.center = translated;
         } else {
             _upperFlag.center = translated;
@@ -526,20 +526,20 @@ typedef enum {
     if(gesture.state == UIGestureRecognizerStateEnded) {
         
         if(self.style == MJPSliderStyleSliding || self.style == MJPSliderStyleRangeSliding) {
-            _privateLowerValue = (isLowerHandle) ? [self valueFromPosition:_lowerHandle.center.x] : _privateLowerValue;
-            _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [self valueFromPosition:_upperHandle.center.x];
+            _privateLowerValue = (self.isLowerHandle) ? [self valueFromPosition:_lowerHandle.center.x] : _privateLowerValue;
+            _privateUpperValue = (self.isLowerHandle) ? _privateUpperValue : [self valueFromPosition:_upperHandle.center.x];
             
-            if(self.round > 0 && isLowerHandle) {
+            if(self.round > 0 && self.isLowerHandle) {
                 _privateLowerValue = round(_privateLowerValue / self.round) * self.round;
             }
-            if(self.round > 0 && !isLowerHandle) {
+            if(self.round > 0 && !self.isLowerHandle) {
                 _privateUpperValue = round(_privateUpperValue / self.round) * self.round;
             }
             
         } else {
             
-            _privateLowerValue = (isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
-            _privateUpperValue = (isLowerHandle) ? _privateUpperValue : [_values[_currentUpperIndex] floatValue];
+            _privateLowerValue = (self.isLowerHandle) ? [_values[_currentLowerIndex] floatValue] : _privateLowerValue;
+            _privateUpperValue = (self.isLowerHandle) ? _privateUpperValue : [_values[_currentUpperIndex] floatValue];
         }
         
         if([self.delegate respondsToSelector:@selector(sliderDidFinish:)]) {

@@ -15,6 +15,7 @@
 @property (nonatomic, assign) IBOutlet id<MJPSliderDelegate> delegate;
 
 @property (nonatomic, assign) BOOL isRangeSlider;
+@property (nonatomic, assign) BOOL isLowerHandle;
 
 @property (nonatomic, assign) CGFloat minValue;
 @property (nonatomic, assign) CGFloat maxValue;
