@@ -33,6 +33,7 @@
 • `setLowerValue:(CGFloat)lowerValue andUpperValue:(CGfloat)upperValue animated:(BOOL)animated`
 
 ## Division Features
+• `format` (NSString formatter value e.g. `@"%@ - %.2f"`)<br>
 • `setDividerPoints:(NSArray *)dividers`<br>
 • Format of divider points: `@{ @"title" : @"Title One", @"value" : @(10) }`
 
