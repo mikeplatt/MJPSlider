@@ -10,20 +10,14 @@
  
  `MJPSlider` is available through [CocoaPods](http://cocoapods.org). To install it, simply add the following line to your Podfile:
  
- `pod "MJPSlider"`
+ `pod 'MJPSlider'`
 
 ## Code Example
 
-`MJPSlider *slider = [[MJPSlider alloc] initWithFrame:CGRectMake(10.0, 10.0, 300.0, 40.0)];`
-`slider.minValue = 1.0;`
-`slider.maxValue = 20.0;`
-`[self.view addSubview:slider];`
-
-## Contributors
-
-Let people know how they can dive into the project, include important links to things like issue trackers, irc, twitter accounts if applicable.
-
-## License
-
-A short snippet describing the license (MIT, Apache, etc.)
+```objective-c
+MJPSlider *slider = [[MJPSlider alloc] initWithFrame:CGRectMake(10.0, 10.0, 300.0, 40.0)];
+slider.minValue = 1.0;
+slider.maxValue = 20.0;
+[self.view addSubview:slider];
+```
 
