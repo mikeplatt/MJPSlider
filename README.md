@@ -36,9 +36,8 @@
 • `format` (NSString formatter value e.g. `@"%@ - %.2f"`)<br>
 • `setDividerPoints:(NSArray *)dividers`<br>
 • Format of divider points: `@{ @"title" : @"Title One", @"value" : @(10) }`<br>
-Note:<br>
-Setting dividers this must be done before setting the values.<br>
-Setting values is then done by passing the `index` of the disired value in the divider point array  
+• Setting dividers this must be done before setting the values.<br>
+• Once dividers are set, values are set by passing the `index` of the disired value in the divider point array  
 
 ## Flag Features
 • `showFlag`<br>
