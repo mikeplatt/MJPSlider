@@ -35,7 +35,7 @@
 • Format of divider points: `@{ @"title" : @"Title One", @"value" : @(10) }`
 
 ## Flag Features
-• `showFlag`<br>       
+• `showFlag`<br>
 • `textColor`<br>
 • `font`<br>
 • `flagColor`<br>
