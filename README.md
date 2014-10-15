@@ -21,15 +21,21 @@
 ## Standard Features
 • `minValue`<br>
 • `maxValue`<br>
-• `setValue:(CGFloat)value animated:(BOOL)animated;`
+• `tintColor`<br>
+• `setValue:(CGFloat)value animated:(BOOL)animated`<br>
+• `setEnabled:(BOOL)enabled animated:(BOOL)animated`
 
 ## Range Slider Features
 • `isRangeSlider` (adds second handle)<br>
 • `minRange` (minimum allowed value between the two handles)<br>
-• `setLowerValue:(CGFloat)lowerValue upperValue:(CGfloat)upperValue animated:(BOOL)animated;`
+• `setLowerValue:(CGFloat)lowerValue andUpperValue:(CGfloat)upperValue animated:(BOOL)animated`
+
+## Division Features
+• `setDividerPoints:(NSArray *)dividers`<br>
+• Format of divider points: `@{ @"title" : @"Title One", @"value" : @(10) }`
 
 ## Flag Features
-• `showFlag`    <br>       
+• `showFlag`<br>       
 • `textColor`<br>
 • `font`<br>
 • `flagColor`<br>
