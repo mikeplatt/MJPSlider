@@ -43,8 +43,13 @@
 • `flagCornerRadius`<br>
 • `flagPadding` (distance between handle and flag)
 
-## Code Example
+## Delegate
+For best results it is best to confirm to the `<MJPSliderDelegate>` methods:<br>
+• `sliderWillMove:(MJPSlider *)slider`
+• `sliderDidMove:(MJPSlider *)slider`
+• `sliderDidFinish:(MJPSlider *)slider`
 
+## Code Example
 ```objective-c
 MJPSlider *slider = [[MJPSlider alloc] initWithFrame:CGRectMake(10.0, 10.0, 300.0, 40.0)];
 slider.minValue = 1.0;
@@ -52,4 +57,5 @@ slider.maxValue = 20.0;
 slider.showFlag = YES;
 slider.tintColor = [UIColor redColor];
 ```
+
 
