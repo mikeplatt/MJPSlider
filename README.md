@@ -45,8 +45,8 @@
 
 ## Delegate
 For best results it is best to confirm to the `<MJPSliderDelegate>` methods:<br>
-• `sliderWillMove:(MJPSlider *)slider`
-• `sliderDidMove:(MJPSlider *)slider`
+• `sliderWillMove:(MJPSlider *)slider`<br>
+• `sliderDidMove:(MJPSlider *)slider`<br>
 • `sliderDidFinish:(MJPSlider *)slider`
 
 ## Code Example
