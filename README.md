@@ -5,6 +5,8 @@
 
 `MJPSlider` is a `UISlider` replacement with options to create a second handle, handle flags and divisions.
 
+![screenshot] (https://github.com/mikeplatt/MJPSlider/blob/master/screenshot.png)
+
 
 ## Installation
  
