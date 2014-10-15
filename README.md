@@ -18,22 +18,23 @@
 `MJPSlider.m`
 
 
-## Features
-Standard
-• `minValue`
-• `maxValue`
+## Standard Features
+• `minValue`<br>
+• `maxValue`<br>
 • `setValue:(CGFloat)value animated:(BOOL)animated;`
-Range Slider 
-• `isRangeSlider` (adds second handle)
-• `minRange` (minimum allowed value between the two handles)
+
+## Range Slider Features
+• `isRangeSlider` (adds second handle)<br>
+• `minRange` (minimum allowed value between the two handles)<br>
 • `setLowerValue:(CGFloat)lowerValue upperValue:(CGfloat)upperValue animated:(BOOL)animated;`
-Flags
-• `showFlag`           
-• `textColor`
-• `font`
-• `flagColor`
-• `flagSize`
-• `flagCornerRadius`
+
+## Flag Features
+• `showFlag`    <br>       
+• `textColor`<br>
+• `font`<br>
+• `flagColor`<br>
+• `flagSize`<br>
+• `flagCornerRadius`<br>
 • `flagPadding` (distance between handle and flag)
 
 ## Code Example
