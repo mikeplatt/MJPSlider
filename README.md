@@ -49,7 +49,7 @@
 • `flagPadding` (distance between handle and flag)
 
 ## Delegate
-For best results it is best to confirm to the `<MJPSliderDelegate>` methods:<br>
+For best results it is best to conform to the `<MJPSliderDelegate>` methods:<br>
 • `sliderWillMove:(MJPSlider *)slider`<br>
 • `sliderDidMove:(MJPSlider *)slider`<br>
 • `sliderDidFinish:(MJPSlider *)slider`
